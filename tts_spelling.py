@@ -1,8 +1,11 @@
+from os import system as execute_command
 import pyttsx3
 import json
 
-WORD_FILE_PATH = 'spelling_level.json'
+print('Pulling from github...')
+execute_command('git pull')
 
+WORD_FILE_PATH = 'spelling_level.json'
 tts = pyttsx3.init()
 tts.setProperty('rate', 125)
 
@@ -54,4 +57,10 @@ while True:
 print()
 print('Saving file...')
 write_file(WORD_FILE_PATH, data)
+print('Done')
+print('Pushing to github...')
+execute_command('git add .')
+execute_command('git commit -m "Update spelling level"')
+execute_command('git push')
+print('Done')
 print('Exiting...')
